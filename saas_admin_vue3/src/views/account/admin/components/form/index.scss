@@ -1,0 +1,32 @@
+.tips {
+	margin-left: 10px;
+}
+.price-table {
+	margin-top: 20px;
+}
+.price-button {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.day-part {
+	display: flex;
+	align-items: center;
+}
+.price-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.icon {
+		cursor: pointer;
+	}
+}
+
+.elFormItem{
+	 display: flex;
+	 .input{
+		flex: 1;
+	 }
+	 .button{
+		margin-left: 10px;
+	 }
+}

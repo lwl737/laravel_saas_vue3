@@ -1,0 +1,20 @@
+.material-tabs {
+  display: flex;
+  flex-direction: column;
+
+  // background: white;
+  :deep(.el-tabs__content) {
+    flex: 1;
+    .el-tab-pane {
+      height: 100%;
+    }
+  }
+}
+.material-form-deep {
+  :deep(.el-form-item) {
+    margin-top: 20px !important;
+  }
+  :deep(.save-button) {
+    // margin-left: 170px !important;
+  }
+}

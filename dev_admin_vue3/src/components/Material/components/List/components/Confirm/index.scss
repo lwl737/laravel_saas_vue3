@@ -1,0 +1,8 @@
+.el-dialog-confirm {
+  :deep(.el-dialog__header) {
+    display: none;
+  }
+  :deep(.el-dialog__body) {
+    padding: 10px 20px !important;
+  }
+}

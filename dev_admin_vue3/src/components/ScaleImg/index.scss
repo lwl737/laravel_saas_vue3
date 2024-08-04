@@ -1,0 +1,40 @@
+.scale-img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    .actions{
+        width: 100%;
+        height: 100%;
+        transition: transform 0.25s linear ;
+        transform-origin:center center;
+    }
+    .bg{
+        background-image: var(--scale-img-background,linear-gradient(to bottom, #00000000, #0000001f, #000000ab)) ;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+    .bottom{
+        position: absolute;
+        transition: bottom 0.25s,opacity 0.25s linear;
+        width: 100%;
+        z-index: 3;
+    }
+
+    .bottom-fixation{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+}
+
+.ele-bg{
+  background-size: cover;
+  background-position: center;
+  // background-attachment: fixed; /* 可选，使背景固定不滚动 */
+}

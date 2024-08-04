@@ -1,0 +1,18 @@
+@font-face {
+  font-family: icon; /* Project id 2667653 */
+  src: url("font_4627791_da3dma1xvb7.woff2?t=1721500342197") format("woff2");
+}
+.icon {
+  font-family: icon !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+.icon-organi::before {
+  content: "\ebd8";
+}
+.icon-box::before {
+  content: "\e61a";
+}

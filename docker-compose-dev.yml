@@ -1,0 +1,165 @@
+# syntax version.
+version: "3"
+networks:
+  lsv_net:
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24
+services:
+  lsv_laravel:
+    build:
+      context: ./laravel
+    container_name: lsv_laravel
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - lsv_redis
+      - lsv_mysql
+      - lsv_mongo
+      - lsv_rabbitmq
+      - lsv_memcached
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.6
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - "./laravel/.:/laravel/"
+      - "./php/.:/php/"
+      - "./docker/php-cli/php.ini:/usr/local/etc/php/php.ini"
+    stdin_open: true
+    tty: true
+    working_dir: /laravel
+    command: sh ./start.sh
+  lsv_redis:
+    restart: always
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_redis:1.0.0"
+    container_name: lsv_redis
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.4
+    ports:
+      - "9002:6379"
+    volumes:
+      - "./docker/redis:/redis/"
+    command: bash -c  "redis-server  /redis/redis.conf  && /bin/bash"
+    stdin_open: true
+    tty: true
+  lsv_memcached:
+    restart: always
+    image: "registry.cn-guangzhou.aliyuncs.com/xht_crm/memcached:3.0.0"
+    container_name: lsv_memcached
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.8
+    volumes:
+      - "./docker/memcached/start.sh:/memcached/start.sh"
+    command: sh /memcached/start.sh
+    stdin_open: true
+    tty: true
+  lsv_mysql:
+    restart: always
+    build:
+      context: ./docker/mysql
+    container_name: lsv_mysql
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.3
+    ports:
+      - "9308:3306"
+    volumes:
+      - "./docker/mysql/conf.d:/etc/mysql/conf.d"
+      - "./docker/mysql/my.cnf.fallback:/etc/mysql/my.cnf.fallback"
+      - "./docker/mysql/logs:/logs"
+      - "./docker/mysql/data:/var/lib/mysql"
+      - "/etc/localtime:/etc/localtime"
+    environment:
+      MYSQL_ROOT_PASSWORD: "0epbavnfpCR750t3Ms4Tw" #root密码
+    stdin_open: true
+    tty: true
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  lsv_mongo:
+    restart: always
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
+    container_name: lsv_mongo
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.5
+    ports:
+      - "9003:27017"
+    volumes:
+      - "./docker/mongo/.:/mongo/"
+    working_dir: /mongo
+    command: sh ./start.sh
+    stdin_open: true
+    tty: true
+  lsv_mongo_replica:
+    restart: always
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
+    container_name: lsv_mongo_replica
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.10
+    volumes:
+      - "./docker/mongo_replica/.:/mongo/"
+    working_dir: /mongo
+    command: sh ./start.sh
+    stdin_open: true
+    tty: true #
+  lsv_rabbitmq:
+    restart: always
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/rabbitmq:2.0.0"
+    container_name: lsv_rabbitmq
+    ports:
+      - "15673:15672"
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.7
+    volumes:
+      - "./docker/rabbitmq/conf/.:/etc/rabbitmq" #配置文件
+      - "./docker/rabbitmq/start.sh:/rabbitmq/start.sh" #启动脚本
+      - "./docker/rabbitmq/logs:/var/log/rabbitmq" #日志文件
+    working_dir: /rabbitmq
+    command: sh start.sh
+    stdin_open: true
+    tty: true
+  dev_admin_vue3:
+    build:
+      context: ./dev_admin_vue3
+    container_name: dev_admin_vue3
+    restart: always
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.11
+    ports:
+      - 886:886
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - "./dev_admin_vue3:/vue/"
+    stdin_open: true
+    tty: true
+    working_dir: /vue
+    command: sh ./start.sh
+  saas_admin_vue3:
+    build:
+      context: ./saas_admin_vue3
+    container_name: saas_admin_vue3
+    restart: always
+    networks:
+      lsv_net:
+        ipv4_address: 172.16.1.12
+    ports:
+      - 887:887
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - "./saas_admin_vue3:/vue/"
+    stdin_open: true
+    tty: true
+    working_dir: /vue
+    command: sh ./start.sh

@@ -1,0 +1,96 @@
+.filter {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 100%;
+  padding: 18px;
+  margin-right: 10px;
+  overflow-y: auto;
+  .card-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // height: 100%;
+  }
+  .title {
+    // height: 40px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--el-color-info-dark-2);
+  }
+  .el-input {
+    margin: 0 0 15px;
+  }
+  .el-scrollbar {
+    --el-icon-show: block;
+    .icon-cus {
+      width: 15px;
+      height: 15px;
+      :deep(.el-icon) {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    :deep(.el-tree-node__expand-icon) {
+      // color: white;
+      // svg{
+      display: var(--el-icon-show);
+
+      // }
+      // align-items: center;
+    }
+    :deep(.el-tree--highlight-current) {
+      .el-tree-node__content {
+        height: 30px;
+      }
+      .el-tree-node.is-current > .el-tree-node__content {
+        background-color: var(--el-color-primary);
+        .el-tree-node__label,
+        .icon {
+          display: flex;
+          align-items: center;
+          color: white;
+        }
+        .el-tree-node__expand-icon {
+          color: white;
+        }
+        .is-leaf {
+          color: transparent;
+        }
+      }
+    }
+  }
+}
+.icon-cus {
+  margin-right: 5px;
+}
+.el-tree-part {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 5px;
+  .el-tree-node__label {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 0;
+  }
+  .handle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    .icon {
+      margin-left: 3px;
+      font-size: 16px;
+    }
+  }
+}
+.filterHeader {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,59 @@
+.expand {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  .expand-left {
+    margin-top: 20px;
+  }
+  .expand-right {
+    display: flex;
+    margin-top: 20px;
+  }
+  .params-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .expand-params {
+    margin-left: 30px;
+  }
+  .expand-sql {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+  }
+  .interval {
+    line-height: 25px;
+  }
+}
+.holiday-cell {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 3px 0;
+}
+.holiday-cell .text {
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  line-height: 24px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.holiday-cell.current .text {
+  color: #ffffff;
+  background: #626aef;
+}
+.holiday-cell .holiday {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--el-color-danger);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
