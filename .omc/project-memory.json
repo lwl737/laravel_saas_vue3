@@ -1,0 +1,88 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1791606723125,
+  "projectRoot": "/mine/tt/laravel_saas_vue3_es",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "backend_laravel": {
+      "path": "backend_laravel",
+      "purpose": null,
+      "fileCount": 22,
+      "lastAccessed": 1791606723121,
+      "keyFiles": [
+        "Dockerfile",
+        "README.md",
+        "artisan",
+        "composer.json",
+        "composer.lock"
+      ]
+    },
+    "dev_admin_vue3": {
+      "path": "dev_admin_vue3",
+      "purpose": null,
+      "fileCount": 25,
+      "lastAccessed": 1791606723123,
+      "keyFiles": [
+        "CHANGELOG.md",
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "commitlint.config.cjs"
+      ]
+    },
+    "docker": {
+      "path": "docker",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1791606723123,
+      "keyFiles": []
+    },
+    "saas_admin_vue3": {
+      "path": "saas_admin_vue3",
+      "purpose": null,
+      "fileCount": 25,
+      "lastAccessed": 1791606723123,
+      "keyFiles": [
+        "CHANGELOG.md",
+        "Dockerfile",
+        "LICENSE",
+        "README.md",
+        "commitlint.config.cjs"
+      ]
+    },
+    "backend_laravel/app": {
+      "path": "backend_laravel/app",
+      "purpose": "Application code",
+      "fileCount": 0,
+      "lastAccessed": 1791606723124,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

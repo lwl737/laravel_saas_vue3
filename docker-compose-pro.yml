@@ -1,0 +1,135 @@
+# syntax version.
+version: "3"
+networks:
+  lsv_net:
+services:
+  lsv_laravel:
+    image: registry.cn-guangzhou.aliyuncs.com/xht_crm/laravel_saas_vue3:1.0.0
+    container_name: lsv_laravel
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    depends_on:
+      - lsv_redis
+      - lsv_mysql
+      - lsv_mongo
+      - lsv_rabbitmq
+      - lsv_memcached
+    networks:
+      - lsv_net
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - "./backend_laravel/.:/laravel/"
+      - "./docker/php-cli/php.ini:/usr/local/etc/php/php.ini"
+    stdin_open: true
+    tty: true
+    working_dir: /laravel
+    command: sh ./start.sh
+  lsv_redis:
+    restart: unless-stopped
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_redis:1.0.0"
+    container_name: lsv_redis
+    networks:
+      - lsv_net
+    ports:
+      - "9002:6379"
+    volumes:
+      - "./docker/redis:/redis/"
+    command: bash -c  "redis-server  /redis/redis.conf  && /bin/bash"
+    stdin_open: true
+    tty: true
+  lsv_memcached:
+    restart: unless-stopped
+    image: "registry.cn-guangzhou.aliyuncs.com/xht_crm/memcached:3.0.0"
+    container_name: lsv_memcached
+    networks:
+      - lsv_net
+    volumes:
+      - "./docker/memcached/start.sh:/memcached/start.sh"
+    command: sh /memcached/start.sh
+    stdin_open: true
+    tty: true
+  lsv_mysql:
+    restart: unless-stopped
+    image: registry.cn-guangzhou.aliyuncs.com/xht_crm/laravel_saas_vue3_mysql:1.0.0
+    container_name: lsv_mysql
+    networks:
+      - lsv_net
+    ports:
+      - "9308:3306"
+    volumes:
+      - "./docker/mysql/conf.d:/etc/mysql/conf.d"
+      - "./docker/mysql/my.cnf.fallback:/etc/mysql/my.cnf.fallback"
+      - "./docker/mysql/logs:/logs"
+      - "./docker/mysql/data:/var/lib/mysql"
+      - "/etc/localtime:/etc/localtime"
+    environment:
+      MYSQL_ROOT_PASSWORD: "0epbavnfpCR750t3Ms4Tw" #root密码
+    stdin_open: true
+    tty: true
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  lsv_mongo:
+    restart: unless-stopped
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
+    container_name: lsv_mongo
+    networks:
+      - lsv_net
+    ports:
+      - "9003:27017"
+    volumes:
+      - "./docker/mongo/.:/mongo/"
+    working_dir: /mongo
+    command: sh ./start.sh
+    stdin_open: true
+    tty: true
+  lsv_mongo_replica:
+    restart: unless-stopped
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
+    container_name: lsv_mongo_replica
+    networks:
+      - lsv_net
+    volumes:
+      - "./docker/mongo_replica/.:/mongo/"
+    working_dir: /mongo
+    command: sh ./start.sh
+    stdin_open: true
+    tty: true #
+  lsv_rabbitmq:
+    restart: unless-stopped
+    image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/rabbitmq:2.0.0"
+    container_name: lsv_rabbitmq
+    ports:
+      - "15673:15672"
+    networks:
+      - lsv_net
+    volumes:
+      - "./docker/rabbitmq/conf/.:/etc/rabbitmq" #配置文件
+      - "./docker/rabbitmq/start.sh:/rabbitmq/start.sh" #启动脚本
+      - "./docker/rabbitmq/logs:/var/log/rabbitmq" #日志文件
+    working_dir: /rabbitmq
+    command: sh start.sh
+    stdin_open: true
+    tty: true
+  lsv_es:
+    build:
+      context: ./docker/elasticsearch
+    volumes:
+      - "./docker/elasticsearch/data/.:/elasticsearch-8.15.0/data/"
+      - "./docker/elasticsearch/logs/.:/elasticsearch-8.15.0/logs/"
+      - "./docker/elasticsearch/elasticsearch.keystore:/usr/share/elasticsearch/config/elasticsearch.keystore"
+      - "./docker/elasticsearch/log4j2.properties:/usr/share/elasticsearch/config/log4j2.properties"
+      - "./docker/elasticsearch/start.sh:/start.sh"
+      - "./docker/elasticsearch/config/elasticsearch.yml:/elasticsearch-8.15.0/config/elasticsearch.yml"
+      - "./docker/elasticsearch/config/jvm.options:/elasticsearch-8.15.0/config/jvm.options"
+    container_name: lsv_es
+    ports:
+      - "9200:9200"
+    environment:
+      ELASTIC_PASSWORD: "yoFJy3miwQnJ+gCKHB7x" #root密码
+    networks:
+      - lsv_net
+    stdin_open: true   # stdin_open 相当于 run 命令中的 -d
+    tty: true          # tty 相当于 run 命令中的 -i
+    command: sh /start.sh

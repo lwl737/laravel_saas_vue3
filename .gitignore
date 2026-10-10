@@ -1,0 +1,5 @@
+/zip
+.vscode
+*.gz
+*.Identifier
+/docker-compose.yml
