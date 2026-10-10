@@ -1,0 +1,18 @@
+.check-group {
+	display: flex;
+	flex-direction: column;
+	.check-group-part {
+		position: relative;
+		display: flex;
+		font-size: 15px;
+		.angle {
+			position: relative;
+			top: 10px;
+		}
+	}
+}
+.attach {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 25px;
+}

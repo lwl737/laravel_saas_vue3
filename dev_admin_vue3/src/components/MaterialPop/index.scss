@@ -1,0 +1,36 @@
+
+.bg-modal{
+	background: rgba(0, 0, 0, 0.5);
+}
+:deep(.el-tabs){
+	height: 100%;
+}
+.up-image{
+
+	width: 87.9936px;
+	height: 87.9936px;
+
+	border: 1px solid #e7e7e7;
+	background: #f9f9f9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+ .none{
+	//   display: flex;
+		width: 70%;
+		height: 60%;
+ }
+
+ .img-value{
+		width: 100%;
+		height: 100%;
+ }
+ .img-clearable{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+ }
+}

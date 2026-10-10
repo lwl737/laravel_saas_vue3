@@ -1,0 +1,50 @@
+.expand {
+  display: flex;
+  flex-direction: row !important;
+  width: 95%;
+  margin: 10px auto;
+  :deep(.el-scrollbar__wrap--hidden-default) {
+    min-height: 45px;
+  }
+  .table-s:nth-child(1) {
+    width: 30%;
+  }
+  .table-s:nth-child(2) {
+    // width: 28%;
+    flex: 1;
+
+    // margin-right: 1%;
+    margin-left: 1%;
+  }
+}
+.table-b {
+  width: 95%;
+  margin: auto;
+}
+.table-boxs {
+  flex: 1;
+
+  // display: flex;
+  // flex-direction: column;
+  width: 0;
+  height: 100%;
+
+  // overflow-x: hidden;
+  :deep(.el-tabs__content) {
+    // flex: 1;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  :deep(.el-tabs--border-card) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  :deep(.el-tab-pane) {
+    height: 100%;
+  }
+  :deep(.card-tabs) {
+    height: 100%;
+  }
+}
