@@ -7,7 +7,7 @@ services:
     build:
       context: ./backend_laravel
     container_name: lsv_laravel
-    restart: always
+    restart: unless-stopped
     ports:
       - "8000:8000"
     depends_on:
@@ -29,7 +29,7 @@ services:
     working_dir: /laravel
     command: sh ./start.sh
   lsv_redis:
-    restart: always
+    restart: unless-stopped
     image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_redis:1.0.0"
     container_name: lsv_redis
     networks:
@@ -42,7 +42,7 @@ services:
     stdin_open: true
     tty: true
   lsv_memcached:
-    restart: always
+    restart: unless-stopped
     image: "registry.cn-guangzhou.aliyuncs.com/xht_crm/memcached:3.0.0"
     container_name: lsv_memcached
     networks:
@@ -53,7 +53,7 @@ services:
     stdin_open: true
     tty: true
   lsv_mysql:
-    restart: always
+    restart: unless-stopped
     build:
       context: ./docker/mysql
     container_name: lsv_mysql
@@ -73,7 +73,7 @@ services:
     tty: true
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
   lsv_mongo:
-    restart: always
+    restart: unless-stopped
     image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
     container_name: lsv_mongo
     networks:
@@ -87,7 +87,7 @@ services:
     stdin_open: true
     tty: true
   lsv_mongo_replica:
-    restart: always
+    restart: unless-stopped
     image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/hash_mainland_mongo:2.0.0"
     container_name: lsv_mongo_replica
     networks:
@@ -99,7 +99,7 @@ services:
     stdin_open: true
     tty: true #
   lsv_rabbitmq:
-    restart: always
+    restart: unless-stopped
     image: "registry.cn-guangzhou.aliyuncs.com/tu_guan/rabbitmq:2.0.0"
     container_name: lsv_rabbitmq
     ports:
@@ -139,7 +139,7 @@ services:
     build:
       context: ./dev_admin_vue3
     container_name: dev_admin_vue3
-    restart: always
+    restart: unless-stopped
     networks:
       - lsv_net
     ports:
@@ -157,7 +157,7 @@ services:
     build:
       context: ./saas_admin_vue3
     container_name: saas_admin_vue3
-    restart: always
+    restart: unless-stopped
     networks:
       - lsv_net
     ports:
