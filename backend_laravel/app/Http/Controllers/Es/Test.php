@@ -9,12 +9,19 @@ use App\Models\Elasticsearch\Connect;
 use App\Models\Redis\RedisMutexLock;
 use App\Jobs\Rabbitmq\DevAdminOperation;
 use App\Jobs\DevAdminOperationFailed;
+use App\Http\Services\Test\Test as TestService;
 
 class Test extends BaseController
 {
     public function add()
     {
-
+        // var_dump(123);
+        //  app()->singleton( 'test' ,fn()=> new TestService(123) );
+        //  $cl = app()->singleton( 'test' ,fn() => new TestService(456) );
+        // $cl = app("test");
+        // var_dump(  $cl->set(789) );
+        // var_dump() app()->instance();
+        var_dump( app("test")->get() );
         // $params = [
         //         'settings' => [
         //             'number_of_shards' => 3,

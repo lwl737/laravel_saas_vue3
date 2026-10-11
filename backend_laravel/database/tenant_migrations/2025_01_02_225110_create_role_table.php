@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('role', function (Blueprint $table) {
+        Schema::create('role', function (Blueprint $table) {
             $table->bigIncrements('role_id');
             $table->string('role_name')->comment('权限名称');
             $table->text('role_json')->comment('权限序列化格式');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('role');
+        Schema::dropIfExists('role');
     }
 };

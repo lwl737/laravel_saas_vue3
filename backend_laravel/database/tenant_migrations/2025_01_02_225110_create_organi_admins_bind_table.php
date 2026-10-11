@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('organi_admins_bind', function (Blueprint $table) {
+        Schema::create('organi_admins_bind', function (Blueprint $table) {
             $table->bigIncrements('bind_id');
             $table->bigInteger('admins_id')->comment('用户id');
             $table->unsignedBigInteger('organi_id')->index('organi_del')->comment('组织id');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('organi_admins_bind');
+        Schema::dropIfExists('organi_admins_bind');
     }
 };

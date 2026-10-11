@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->table('organi', function (Blueprint $table) {
+        Schema::table('organi', function (Blueprint $table) {
             $table->foreign(['organi_pid'], 'organi_id_del')->references(['organi_id'])->on('organi')->onUpdate('no action')->onDelete('cascade');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->table('organi', function (Blueprint $table) {
+        Schema::table('organi', function (Blueprint $table) {
             $table->dropForeign('organi_id_del');
         });
     }

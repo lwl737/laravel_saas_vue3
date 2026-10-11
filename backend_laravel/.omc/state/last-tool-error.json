@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"echo \\\"=== laravel 库的表（中央连接） ===\\\" && docker exec lsv_mysql sh -c \\\"mysql -uroot -p0epbavnfpCR750t3Ms4Tw -e 'SHOW TABLES;' laravel\\\" 2>/dev/null && echo \\\"\\\" && echo \\\"=== laravel.tenants ...",
+  "error": "Exit code 1\n=== laravel 库的表（中央连接） ===\nTables_in_laravel\ncache\ncache_locks\ndomains\nfailed_jobs\njob_batches\njobs\nmigrations\npassword_reset_tokens\nsessions\ntenants\nusers\n\n=== laravel.tenants 记录（stancl 租户记录） ===",
+  "timestamp": "2026-10-11T16:45:27.824Z",
+  "retry_count": 1
+}

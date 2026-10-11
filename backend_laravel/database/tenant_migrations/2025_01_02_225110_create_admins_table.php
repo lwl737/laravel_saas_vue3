@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('admins', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('admins_id')->index('admins_id')->comment('账号id');
             $table->char('username', 20)->unique('username_only')->comment('账号');
             $table->char('password', 32)->comment('密码');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('admins');
+        Schema::dropIfExists('admins');
     }
 };

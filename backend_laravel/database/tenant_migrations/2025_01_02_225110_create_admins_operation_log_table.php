@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('admins_operation_log', function (Blueprint $table) {
+        Schema::create('admins_operation_log', function (Blueprint $table) {
             $table->bigIncrements('log_id');
             $table->longText('params')->comment('请求参数 序列化');
             $table->string('router_path')->comment('前端路由路径');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('admins_operation_log');
+        Schema::dropIfExists('admins_operation_log');
     }
 };

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('admins_del', function (Blueprint $table) {
+        Schema::create('admins_del', function (Blueprint $table) {
             $table->bigIncrements('del_id')->comment('删除id');
             $table->dateTime('created_time')->nullable();
             $table->dateTime('updated_time')->nullable();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('admins_del');
+        Schema::dropIfExists('admins_del');
     }
 };

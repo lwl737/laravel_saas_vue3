@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1791606723125,
+  "lastScanned": 1791735774989,
   "projectRoot": "/mine/tt/laravel_saas_vue3_es",
   "techStack": {
     "languages": [],
@@ -33,7 +33,7 @@
       "path": "backend_laravel",
       "purpose": null,
       "fileCount": 22,
-      "lastAccessed": 1791606723121,
+      "lastAccessed": 1791735774979,
       "keyFiles": [
         "Dockerfile",
         "README.md",
@@ -46,7 +46,7 @@
       "path": "dev_admin_vue3",
       "purpose": null,
       "fileCount": 25,
-      "lastAccessed": 1791606723123,
+      "lastAccessed": 1791735774981,
       "keyFiles": [
         "CHANGELOG.md",
         "Dockerfile",
@@ -59,14 +59,14 @@
       "path": "docker",
       "purpose": null,
       "fileCount": 0,
-      "lastAccessed": 1791606723123,
+      "lastAccessed": 1791735774985,
       "keyFiles": []
     },
     "saas_admin_vue3": {
       "path": "saas_admin_vue3",
       "purpose": null,
       "fileCount": 25,
-      "lastAccessed": 1791606723123,
+      "lastAccessed": 1791735774986,
       "keyFiles": [
         "CHANGELOG.md",
         "Dockerfile",
@@ -79,10 +79,47 @@
       "path": "backend_laravel/app",
       "purpose": "Application code",
       "fileCount": 0,
-      "lastAccessed": 1791606723124,
+      "lastAccessed": 1791735774986,
       "keyFiles": []
     }
   },
-  "hotPaths": [],
+  "hotPaths": [
+    {
+      "path": "backend_laravel/app/Http/Controllers/Dev/Saas/Tenant.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736145074,
+      "type": "file"
+    },
+    {
+      "path": "backend_laravel/app/Http/Routes/Modules/Dev/Saas/Tenant.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736145439,
+      "type": "file"
+    },
+    {
+      "path": "backend_laravel/app/Jobs/TenantCreate.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736145793,
+      "type": "file"
+    },
+    {
+      "path": "backend_laravel/app/Services/Tenant/Server.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736146109,
+      "type": "file"
+    },
+    {
+      "path": "backend_laravel/app/Common/Repository/Dev/SaasTenantRepository.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736148973,
+      "type": "file"
+    },
+    {
+      "path": "backend_laravel/app/Providers/TenancyServiceProvider.php",
+      "accessCount": 1,
+      "lastAccessed": 1791736149292,
+      "type": "file"
+    }
+  ],
   "userDirectives": []
 }

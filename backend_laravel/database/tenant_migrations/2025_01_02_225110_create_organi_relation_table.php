@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('tenant_mysql')->create('organi_relation', function (Blueprint $table) {
+        Schema::create('organi_relation', function (Blueprint $table) {
             $table->unsignedBigInteger('organi_ancestor_id')->comment('祖先id');
             $table->unsignedBigInteger('organi_descendant_id')->index('descendant_id')->comment('子孙id');
             $table->unsignedBigInteger('level')->default(0)->comment('层级');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('tenant_mysql')->dropIfExists('organi_relation');
+        Schema::dropIfExists('organi_relation');
     }
 };
